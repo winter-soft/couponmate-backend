@@ -1,0 +1,42 @@
+
+server:
+  port: 8080 # ?? ????
+  servlet:
+    context-path: /  # ??? : localhost:8000/api/
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver # mysql ??
+    url: jdbc:mysql://localhost:3306/kooteam?serverTimezone=Asia/Seoul
+    username: root
+    password: hks13579
+
+  main:
+    allow-circular-references: true
+
+  jpa: # jpa ??
+    open-in-view: true # lazy Loading
+    hibernate:
+      ddl-auto: update # create:????, update:??????, none: ??,???? (x)
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl # ???? ??? ??? ??? ???? ???.
+      use-new-id-generator-mappings: false # false: jpa? ???? ?? ??? ??? ???? ???.
+    show-sql: true # ?? ????
+    properties:
+      hibernate.format_sql: true # ?? ??? ????
+      hibernate.default_batch_fetch_size: 100
+
+  mvc:
+    pathmatch:
+      matching-strategy: ant_path_matcher # ??? ?? http://localhost:8080/api/swagger-ui.html
+
+  jackson:
+    serialization:
+      fail-on-empty-beans: false
+jwt:
+  tokenProvider:
+    secretKey: "NMA8JPctFuna59f5236979CB6F1AD6B6A6184A31E6BE37DB3818CC36871E26235DD67DCFE4041492"
+
+payments:
+  toss:
+    clientKey: "dGVzdF9za196WExrS0V5cE5BcldtbzUwblgzbG1lYXhZRzVSOg=="
